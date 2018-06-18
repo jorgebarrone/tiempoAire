@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../paper-card/paper-card.html">
 
 <dom-module id="tiempo-aire">
   <template>
@@ -68,14 +68,14 @@
     <div>
       <h3 class="subtit-black">Números guardados</h3>
       <div class="container">
-          <template is="dom-repeat" items="{{data}}" as="contact">
+          <template is="dom-repeat" items="[[data]]" as="contact">
             
             <paper-card>
               <div class="numbers">
                 <img src="/img/savedphone.png" alt="">
-                <label class="phonelabel">[[contact.name]]</label>
-                <label class="phonelabel">[[contact.number]]</label>
-                <label class="phonelabel">[[contact.company]]</label>
+                <label class="phonelabel numbers">[[contact.name]]</label>
+                <label class="phonelabel numbers">[[contact.number]]</label>
+                <label class="phonelabel numbers">[[contact.company]]</label>
               </div>
             </paper-card>
 
