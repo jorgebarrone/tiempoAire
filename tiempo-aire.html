@@ -1,0 +1,114 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<dom-module id="tiempo-aire">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+      }
+      .header1 {
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+        font-size: 1.5em;
+        width: 100%;
+        background-color: rgba(0, 112, 196, 1);
+      }
+      .subtit-blue {
+        color: rgba(0, 95, 189, 1);
+        font-weight: bold;
+      }
+      .subtit-black {
+        color: rgba(0, 0, 0, 1);
+        font-weight: bold;
+      }
+      .numbers {
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .phonelabel {
+        padding: 0px 10px 0px 10px;
+      }
+    </style>
+    
+    <iron-ajax
+      auto
+      url="/src/contactlist.json"
+      content-type="application/json"
+      last-response='{{data}}'
+      handle-as="json"
+    ></iron-ajax>
+
+    <div class="container">
+      <h2 class="header1">COMPRA DE TIEMPO AIRE</h2>
+      <h3 class="subtit-blue">  Tiempo aire para:</h3>
+      <br>
+      <paper-card>
+        <div class="numbers">
+          <img src="/img/myphone.png" alt="">
+          <label class="phonelabel">Mi teléfono [[myPhone]]</label>
+        </div>
+      </paper-card>
+      <paper-card>
+          <div class="numbers">
+            <img src="/img/newphone.png" alt="">
+            <label class="phonelabel">Nuevo teléfono</label>
+          </div>
+      </paper-card>
+    </div>
+    <div>
+      <h3 class="subtit-black">Números guardados</h3>
+      <div class="container">
+          <template is="dom-repeat" items="{{data}}" as="contact">
+            
+            <paper-card>
+              <div class="numbers">
+                <img src="/img/savedphone.png" alt="">
+                <label class="phonelabel">[[contact.name]]</label>
+                <label class="phonelabel">[[contact.number]]</label>
+                <label class="phonelabel">[[contact.company]]</label>
+              </div>
+            </paper-card>
+
+          </template>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `tiempo-aire`
+     * Carga de tiempo aire
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class TiempoAire extends Polymer.Element {
+      static get is() { return 'tiempo-aire'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'tiempo-aire'
+          },
+          myPhone: {
+            type: Number,
+            value: 0
+          }
+        };
+      }
+    }
+
+    window.customElements.define(TiempoAire.is, TiempoAire);
+  </script>
+</dom-module>
